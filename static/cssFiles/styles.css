@@ -1,0 +1,36 @@
+@font-face {
+    font-family: Pacifico;
+    src: url("../fontFiles/Pacifico/Pacifico-Regular.ttf");
+}
+
+@font-face {
+    font-family: Playfair;
+    src: url("../fontFiles/Playfair/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url("../fontFiles/Raleway/Raleway-VariableFont_wght.ttf");
+}
+
+/* 
+
+Color codes  --> https://colorhunt.co/palette/645caaa084cabface0ebc7e8
+
+#645CAA
+#A084CA
+#BFACE0
+#EBC7E8
+
+*/
+
+
+body{
+    font-family: Raleway;
+    background-color: #EBC7E8;
+}
+
+.container-fluid{
+    height: 120px;
+    background-color: red;
+}
