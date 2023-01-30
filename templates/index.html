@@ -7,6 +7,9 @@
     {% load static %}
 
     <link rel="icon" type="image/x-icon" href="{% static 'images/logo/favicon.png' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <!--
         CSS Files
@@ -14,20 +17,28 @@
     
     <link rel="stylesheet" href="{% static 'cssFiles/animateCSS/animate.css-4.1.1/source/animate.css' %}">
     <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-reboot.min.css' %}">
-    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-grid.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-grid.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-reboot.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-utilities.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-utilities.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-grid.min.css' %}"> -->
     <link rel="stylesheet" href="{% static 'cssFiles/bootstrap-icons/font/bootstrap-icons.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'cssFiles/styles.css' %}">
 
     <!--
         Js Files
     -->
-    <script src="{% static 'jsFiles/bootstrapJS/bootstrap.min.js' %}"></script>
     <script src="{% static 'jsFiles/bootstrapJS/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'jsFiles/wow.js/dist/wow.min.js' %}"></script>
     <script src="{% static 'jsFiles/jQueryFiles/jquery.min.js' %}"></script>
     <script src="{% static 'jsFiles/canvasJS/canvasjs.min.js' %}"></script>
     <script src="{% static 'jsFiles/myJSFiles/actionPerform.js' %}"></script>
+
+
+    
+    
 
     <script>
         $(function(){
@@ -36,7 +47,66 @@
     </script>
 
     <body>
-        
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+             <a class="navbar-brand header-brand-title" href="#">Sports Win Predictor</a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                   <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#">Contact</a>
+                   </li>
+                   <li class="nav-item">
+                      <a class="nav-link" href="#">Pricing</a>
+                   </li>
+                   <li class="nav-item">
+                      <a class="nav-link" href="#">Download</a>
+                   </li>
+                </ul>
+             </div>
+          </div>
+       </nav>
+      </header>
+
+      <div class="container-fluid show-web-title text-center">
+        <h1>Predict Who Will Win</h1>
+        <br>
+        <article>
+          Our web app predicts which team in the sports.
+        </article>
+        <article>
+          Start predicting with high accuracy of chance and make a smart guess who is gonna win in upcomming mathes in sports
+        </article>
+      </div>
+
+      <div class="container-fluid web-showcase">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div class="col gap-3">
+                <div class="container web-showcase-events">
+                    Test
+                </div>
+              </div>
+              <div class="col">
+                <div class="container web-showcase-events">
+                  Test
+              </div>
+              </div>
+              <div class="col">
+                <div class="container web-showcase-events">
+                  Test
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+          
     </body>
 
 

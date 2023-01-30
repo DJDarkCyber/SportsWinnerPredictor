@@ -27,10 +27,54 @@ Color codes  --> https://colorhunt.co/palette/645caaa084cabface0ebc7e8
 
 body{
     font-family: Raleway;
-    background-color: #EBC7E8;
+    background-color: #645CAA;
 }
 
-.container-fluid{
-    height: 120px;
-    background-color: red;
+header{
+    color: #EBC7E8;
+}
+
+.header-brand-title{
+    font-weight: 700;
+    color: #EBC7E8;
+}
+
+.nav-link{
+    color: #BFACE0 !important;
+}
+
+.active{
+    color: #EBC7E8 !important;
+    font-weight: 600;
+}
+
+.nav-link:hover{
+    color: #ddd7e9 !important;
+}
+
+.show-web-title{
+    height: 200px;
+    margin-top: 3%;
+}
+
+.web-showcase{
+    height: auto;
+    /* background-color: white; */
+    margin-top: 4%;
+}
+
+.web-showcase-events{
+    background-color: #A084CA;
+    height: 420px;
+}
+
+article{
+    font-size: 17px;
+    color: #A084CA;
+    font-weight: 600;
+}
+
+h1{
+    color: #BFACE0;
+    font-weight: 800;
 }
