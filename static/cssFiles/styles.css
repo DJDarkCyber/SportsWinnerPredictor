@@ -66,6 +66,8 @@ header{
 .web-showcase-events{
     background-color: #A084CA;
     height: 420px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 30px;
 }
 
 article{
@@ -77,4 +79,32 @@ article{
 h1{
     color: #BFACE0;
     font-weight: 800;
+}
+
+.web-showcase-container{
+    
+}
+
+.startUpDisplay{
+    margin-top: 50px;
+    height: 800px;
+    background-color: rgb(247, 247, 247);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset;
+}
+
+.getStartedContent{
+    height: 320px;
+    background-color: white;
+    margin-top: 80px !important;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    border-radius: 30px;
+    color: #BFACE0;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
+}
+
+.g-3{
+    padding: 1rem;
 }
