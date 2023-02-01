@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-utilities.rtl.min.css' %}">
     <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap-grid.min.css' %}"> -->
     <link rel="stylesheet" href="{% static 'cssFiles/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/fontAwesome/all.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'cssFiles/styles.css' %}">
 
     <!--
@@ -34,6 +35,7 @@
     <script src="{% static 'jsFiles/wow.js/dist/wow.min.js' %}"></script>
     <script src="{% static 'jsFiles/jQueryFiles/jquery.min.js' %}"></script>
     <script src="{% static 'jsFiles/canvasJS/canvasjs.min.js' %}"></script>
+    <script scr="{% static 'jsFiles/fontAwesome/pro.min.js' %}"></script>
     <script src="{% static 'jsFiles/myJSFiles/actionPerform.js' %}"></script>
 
 
@@ -57,17 +59,20 @@
              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#"><i class="fa-regular fa-house header-favs"></i>Home</a>
                   </li>
                    <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="#">Make Predictions</a>
+                      <a class="nav-link" aria-current="page" href="#"><i class="fa-duotone fa-user-robot header-favs"></i>Predict</a>
                    </li>
                    <li class="nav-item">
-                      <a class="nav-link" href="#">Support</a>
+                      <a class="nav-link" href="#"><i class="fa-regular fa-bars-sort header-favs"></i>Predictions</a>
                    </li>
                    <li class="nav-item">
-                      <a class="nav-link" href="#">About Us</a>
+                      <a class="nav-link" href="#"><i class="fa-solid fa-heart header-favs"></i>Support</a>
                    </li>
+                   <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa-duotone fa-user-vneck-hair header-favs"></i>About Us</a>
+                 </li>
                 </ul>
              </div>
           </div>
@@ -91,16 +96,19 @@
               <div class="col">
                 <div class="container web-showcase-events g-3 wow fadeInUp" data-wow-delay="0.1s">
                     <h3>Get Most Accurate Prediction</h3>
+                    <p class="showcase-events-desc">Maximize your sports knowledge with our state-of-the-art win predictor, providing the most accurate predictions in the game.</p>
                 </div>
               </div>
               <div class="col">
                 <div class="container web-showcase-events g-3 wow fadeInUp" data-wow-delay="0.2s">
-                  Test
+                  <h3>Winning Sports Predictions with Our Web App</h3>
+                  <div class="showcase-events-desc">Never miss a beat in the world of sports with our web app, giving you the upper hand in predicting the outcome of your favorite games.</div>
               </div>
               </div>
               <div class="col">
                 <div class="container web-showcase-events g-3 wow fadeInUp" data-wow-delay="0.3s">
-                  Test
+                  <h3>Accurate Sports Predictions at Your Fingertips</h3>
+                  <div class="showcase-events-desc">Stay ahead in the game with our sports prediction web app. Get accurate predictions for all your favorite sports, from football to basketball and beyond. With advanced algorithms and expert analysis, our app gives you the confidence to make informed decisions. Never miss a beat in the world of sports again. Get it now.</div>
               </div>
               </div>
           </div>
@@ -109,6 +117,21 @@
 
       <div class="continer-fluid startUpDisplay g-3">
         <div class="container getStartedContent g-3 text-center">
+
+
+
+          <div class="displaySportsFavs">
+            <i class="fa-duotone fa-futbol sportsFavs"></i>
+            <i class="fa-solid fa-basketball sportsFavs"></i>
+            <i class="fa-solid fa-baseball sportsFavs"></i>
+            <i class="fa-sharp fa-solid fa-table-tennis-paddle-ball sportsFavs"></i>
+            <i class="fa-regular fa-field-hockey-stick-ball sportsFavs"></i>
+            <i class="fa-sharp fa-solid fa-cricket-bat-ball sportsFavs"></i>
+            <i class="fa-solid fa-volleyball sportsFavs"></i>
+            <i class="fa-solid fa-rugby-ball sportsFavs"></i>
+            <i class="fa-solid fa-golf-flag-hole sportsFavs"></i>
+          </div>
+          
           <h4>Excited to predict what team wins next?</h4>
           <button class="btn btn-outline-secondary">Predict Now</button>
           

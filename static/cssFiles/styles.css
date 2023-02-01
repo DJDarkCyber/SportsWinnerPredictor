@@ -52,6 +52,10 @@ header{
     color: #ddd7e9 !important;
 }
 
+.header-favs{
+    padding: 4px;
+}
+
 .show-web-title{
     height: 200px;
     margin-top: 3%;
@@ -64,11 +68,29 @@ header{
 }
 
 .web-showcase-events{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
     background-color: #A084CA;
+    color: #EBC7E8;
     height: 420px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     border-radius: 30px;
+    transition-delay: 0.3s;
+    transition-timing-function: ease;
+    text-align: center;
 }
+
+.showcase-events-desc{
+    display: none;
+    font-size: 17px;
+    text-indent: 50px;
+    color: #BFACE0;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
 
 article{
     font-size: 17px;
@@ -87,9 +109,13 @@ h1{
 
 .startUpDisplay{
     margin-top: 50px;
-    height: 800px;
+    margin-bottom: 20px;
+    height: 550px;
     background-color: rgb(247, 247, 247);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset;
+    background-image: url("../images/otherImages/animated-shape-bg.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px inset, rgba(0, 0, 0, 0.12) 0px -12px 30px inset, rgba(0, 0, 0, 0.12) 0px 4px 6px inset, rgba(0, 0, 0, 0.17) 0px 12px 13px inset, rgba(0, 0, 0, 0.09) 0px -3px 5px inset;
 }
 
 .getStartedContent{
@@ -107,4 +133,19 @@ h1{
 
 .g-3{
     padding: 1rem;
+}
+
+.displaySportsFavs{
+    display: flex;
+    flex-direction: row;
+    font-size: 20px !important;
+    margin-bottom: 12px !important;
+}
+
+.sportsFavs{
+    padding: 10px;
+}
+
+.btn-outline-secondary{
+    --bs-btn-hover-bg: #BFACE0;
 }
