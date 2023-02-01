@@ -52,7 +52,7 @@
              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#"><i class="fa-regular fa-house header-favs"></i>Home</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'index' %}"><i class="fa-regular fa-house header-favs"></i>Home</a>
                   </li>
                    <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="#"><i class="fa-duotone fa-user-robot header-favs"></i>Predict</a>
@@ -83,10 +83,12 @@
         </article>
       </div>
 
-      <div class="continer-fluid startUpDisplay g-3">
-        <div class="container-fluid getStartedContent g-3 text-center">
+      <div class="continer-fluid predictOptionDisplay g-3">
+        <div class="container-fluid predictOptionDisplayContent g-3 text-center" onclick="window.location.href='{% url 'predictFootball' %}'">
 
-            
+            <div class="container predictOptionsContainer">
+                <h4 class="predictOptionHeader">Predict For FootBall <i class="fa-regular fa-futbol"></i></h4>
+            </div>
           
         </div>
       </div>

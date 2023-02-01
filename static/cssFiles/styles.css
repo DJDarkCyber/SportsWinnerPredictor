@@ -166,9 +166,43 @@ h1{
     padding-bottom: 120px !important;
     height: auto;
     background-color: rgb(247, 247, 247);
-    background-image: url("../images/otherImages/animated-shape-bg.svg");
+    background-image: url("../images/otherImages/rect-bg.svg");
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px inset, rgba(0, 0, 0, 0.12) 0px -12px 30px inset, rgba(0, 0, 0, 0.12) 0px 4px 6px inset, rgba(0, 0, 0, 0.17) 0px 12px 13px inset, rgba(0, 0, 0, 0.09) 0px -3px 5px inset;
 
+}
+
+.predictOptionDisplayContent{
+    height: auto;
+    padding: 40px;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    border-radius: 30px;
+    color: #BFACE0;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
+}
+
+.predictOptionsContainer{
+    box-shadow: rgba(130, 43, 201, 0.2) 0px 7px 29px 0px inset;
+    padding: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    place-content: center;
+    place-items: center;
+
+}
+/* 
+.predictOptionsContainer:hover{
+    box-shadow: rgba(130, 43, 201, 0.2) 0px 7px 29px 0px; */
+
+.predictOptionHeader{
+    /* text-align: center; */
+    font-weight: 800;
+    color: #d3c8e7;
 }

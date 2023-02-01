@@ -8,3 +8,6 @@ def main(request):
 
 def predictOptions(request):
     return render(request, "predictOptions.html")
+
+def predictFootball(request):
+    return render(request, "predictFootball.html")

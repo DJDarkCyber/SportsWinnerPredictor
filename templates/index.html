@@ -59,7 +59,7 @@
              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"><i class="fa-regular fa-house header-favs"></i>Home</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}"><i class="fa-regular fa-house header-favs"></i>Home</a>
                   </li>
                    <li class="nav-item">
                       <a class="nav-link" aria-current="page" href="{% url 'predictOptions' %}"><i class="fa-duotone fa-user-robot header-favs"></i>Predict</a>
@@ -133,7 +133,7 @@
           </div>
           
           <h4>Excited to predict what team wins next?</h4>
-          <button class="btn btn-outline-secondary">Predict Now</button>
+          <button class="btn btn-outline-secondary" onclick="window.location.href = '{% url 'predictOptions' %}'">Predict Now</button>
           
         </div>
       </div>
