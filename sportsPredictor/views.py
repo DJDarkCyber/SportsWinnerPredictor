@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def main(request):
     return render(request, "index.html")
+
+def predictOptions(request):
+    return render(request, "predictOptions.html")

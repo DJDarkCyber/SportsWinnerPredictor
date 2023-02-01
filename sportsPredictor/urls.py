@@ -7,6 +7,7 @@ from django.views.static import serve
 urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path("", views.main, name="index"),
+    path("choose", views.predictOptions, name="predictOptions")
 ]
 
 urlpatterns += staticfiles_urlpatterns()

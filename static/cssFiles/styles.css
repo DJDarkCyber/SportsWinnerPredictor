@@ -24,6 +24,10 @@ Color codes  --> https://colorhunt.co/palette/645caaa084cabface0ebc7e8
 
 */
 
+*{
+    scrollbar-color: #645CAA #BFACE0;
+    scrollbar-width: 5px;
+}
 
 body{
     font-family: Raleway;
@@ -108,9 +112,11 @@ h1{
 }
 
 .startUpDisplay{
-    margin-top: 50px;
-    margin-bottom: 20px;
-    height: 550px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding-top: 120px !important;
+    padding-bottom: 120px !important;
+    height: auto;
     background-color: rgb(247, 247, 247);
     background-image: url("../images/otherImages/animated-shape-bg.svg");
     background-repeat: no-repeat;
@@ -121,7 +127,6 @@ h1{
 .getStartedContent{
     height: 320px;
     background-color: white;
-    margin-top: 80px !important;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     border-radius: 30px;
     color: #BFACE0;
@@ -138,8 +143,12 @@ h1{
 .displaySportsFavs{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    place-content: center;
+    place-items: center;
     font-size: 20px !important;
     margin-bottom: 12px !important;
+    overflow: initial;
 }
 
 .sportsFavs{
@@ -148,4 +157,18 @@ h1{
 
 .btn-outline-secondary{
     --bs-btn-hover-bg: #BFACE0;
+}
+
+.predictOptionDisplay{
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding-top: 120px !important;
+    padding-bottom: 120px !important;
+    height: auto;
+    background-color: rgb(247, 247, 247);
+    background-image: url("../images/otherImages/animated-shape-bg.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px inset, rgba(0, 0, 0, 0.12) 0px -12px 30px inset, rgba(0, 0, 0, 0.12) 0px 4px 6px inset, rgba(0, 0, 0, 0.17) 0px 12px 13px inset, rgba(0, 0, 0, 0.09) 0px -3px 5px inset;
+
 }
