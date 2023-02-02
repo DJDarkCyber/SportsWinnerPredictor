@@ -8,7 +8,8 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path("", views.main, name="index"),
     path("choose", views.predictOptions, name="predictOptions"),
-    path("predictFootball", views.predictFootball, name="predictFootball")
+    path("predictFootball", views.predictFootball, name="predictFootball"),
+    path("footballPredictionResult", views.footballPredictionResult, name="footballPredictionResult")
 ]
 
 urlpatterns += staticfiles_urlpatterns()

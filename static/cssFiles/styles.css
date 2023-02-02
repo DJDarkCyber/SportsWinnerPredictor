@@ -206,3 +206,54 @@ h1{
     font-weight: 800;
     color: #d3c8e7;
 }
+
+.getOptionsContainer{
+    height: auto;
+    padding: 40px;
+    /* background-color: red; */
+    margin-top: 30px;
+}
+
+.input-group-text{
+    color: #645CAA;
+    background-color: #e1daec;
+}
+
+.input-group span{
+    font-weight: 800;
+}
+
+.submit-btn input{
+    font-weight: 600 !important;
+}
+
+.predictedTeamDisplay{
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    color: #A084CA;
+    font-size: 22px;
+    margin-top: 5%;
+}
+
+.predictedTeamDisplay .displayTeamInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.displayTeamInfo table tr td{
+    padding: 10px;
+}
+
+.displayPredictedTeam{
+    font-size: 40px;
+    margin-top: 4%;
+    text-align: center;
+}
+
+.displayPredictedTeam span{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    padding: 6px;
+    font-weight: 600;
+}
