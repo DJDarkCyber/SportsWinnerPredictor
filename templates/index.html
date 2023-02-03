@@ -137,6 +137,29 @@
           
         </div>
       </div>
+
+      <div class="container displayPredictionData">
+        <table class="table displayDataTableTitle">
+          <tr>
+            <th scope="row">Game</th>
+            <th scope="row">Team 1</th>
+            <th scope="row">Team 2</th>
+            <th scope="row">Result</th>
+            <th scope="row">Predicted On</th>
+          </tr>
+        </table>
+        <table class="table displayDataTable">
+          {% for game, team_1, team_2, result, predictedTime in pred_items %}
+          <tr class="displayDataTableRow">
+            <th>{{game}}</th>
+            <th>{{team_1}}</th>
+            <th>{{team_2}}</th>
+            <th>{{result}}</th>
+            <th>{{predictedTime}}</th>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
           
     </body>
 

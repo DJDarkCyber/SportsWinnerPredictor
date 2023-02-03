@@ -253,7 +253,36 @@ h1{
 }
 
 .displayPredictedTeam span{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
     padding: 6px;
     font-weight: 600;
+}
+
+.displayPredictionData{
+    padding: 0px;
+    background-color: white;
+    margin-bottom: 80px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.displayDataTable{
+    height: 600px;
+    overflow-y: scroll;
+    /* background-color: #f1e8ff; */
+    text-align: center;
+    margin: 0px !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.displayDataTableTitle{
+    background-color: #645CAA;
+    margin: 0px;
+    color: #BFACE0;
+    text-align: center;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.displayDataTableRow:hover{
+    background-color: #ebe0ff;
+    
 }

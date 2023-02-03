@@ -7,7 +7,29 @@ from .models import PredictedHistory
 
 
 def main(request):
-    return render(request, "index.html")
+    predictionHist = PredictedHistory.objects.all().order_by("-predicted_on")[:20]
+    games = []
+    teams_1 = []
+    teams_2 = []
+    results = []
+    predictedTimes = []
+
+    for predictions in predictionHist:
+        games.append(predictions.game)
+        teams_1.append(predictions.team_1)
+        teams_2.append(predictions.team_2)
+        results.append(predictions.result)
+        predictedTimes.append(predictions.predicted_on)
+
+    pred_items = zip(games, teams_1, teams_2, results, predictedTimes)
+
+    print(pred_items)
+
+    htmlVars = {
+        "pred_items": pred_items,
+
+    }
+    return render(request, "index.html", htmlVars)
 
 def predictOptions(request):
     return render(request, "predictOptions.html")
@@ -43,6 +65,8 @@ def predictFootball(request):
     # won_team = won_team.readlines()
     # won_team = [item.lstrip() for item in won_team]
     # won_team = [item.replace("\n", "") for item in won_team]
+
+    
 
     htmlVars = {
         "home_teams": home_team,
@@ -102,8 +126,9 @@ def footballPredictionResult(request):
 
         won_team = won_teams[predictedWinner[0]]
         if won_team != home_team and won_team != away_team:
-            print(home_team)
-            print(away_team)
+            won_team = "Error"
+        
+        if home_team == away_team:
             won_team = "Error"
 
         htmlVars = {
