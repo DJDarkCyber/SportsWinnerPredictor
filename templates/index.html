@@ -148,17 +148,20 @@
             <th scope="row">Predicted On</th>
           </tr>
         </table>
-        <table class="table displayDataTable">
-          {% for game, team_1, team_2, result, predictedTime in pred_items %}
-          <tr class="displayDataTableRow">
-            <th>{{game}}</th>
-            <th>{{team_1}}</th>
-            <th>{{team_2}}</th>
-            <th>{{result}}</th>
-            <th>{{predictedTime}}</th>
-          </tr>
-          {% endfor %}
-        </table>
+        <div class="displayDataTable">
+          <table class="table">
+            {% for game, team_1, team_2, result, predictedTime in pred_items %}
+            <tr class="displayDataTableRow">
+              <th>{{game}}</th>
+              <th>{{team_1}}</th>
+              <th>{{team_2}}</th>
+              <th>{{result}}</th>
+              <th>{{predictedTime}}</th>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        
       </div>
           
     </body>

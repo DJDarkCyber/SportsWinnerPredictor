@@ -22,10 +22,10 @@ $(document).ready(function() {
 
   $(".predictOptionsContainer").on('mouseenter touchstart', function(){
     $(this).css("box-shadow", "rgba(130, 43, 201, 0.2) 0px 7px 29px 0px");
-    $(".predictOptionHeader").css("color", "#d3c8e7");
+    $(this).find(".predictOptionHeader").css("color", "#d3c8e7");
   }).on('mouseleave touchend', function(){
     $(this).css("box-shadow", "rgba(130, 43, 201, 0.2) 0px 7px 29px 0px inset");
-    $(".predictOptionHeader").css("color", "#BFACE0");
+    $(this).find(".predictOptionHeader").css("color", "#BFACE0");
   });  
 
 

@@ -84,13 +84,19 @@
       </div>
 
       <div class="continer-fluid predictOptionDisplay g-3">
-        <div class="container-fluid predictOptionDisplayContent g-3 text-center" onclick="window.location.href='{% url 'predictFootball' %}'">
+        
+        <div class="container-fluid predictOptionDisplayContent g-3 text-center" >
+            
+            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictBaseketball' %}'">
+              <h4 class="predictOptionHeader">Predict For Baseketball <i class="fa-sharp fa-solid fa-basketball"></i></h4>
+            </div>
 
-            <div class="container predictOptionsContainer">
+            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictFootball' %}'">
                 <h4 class="predictOptionHeader">Predict For FootBall <i class="fa-regular fa-futbol"></i></h4>
             </div>
           
         </div>
+
       </div>
           
     </body>

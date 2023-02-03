@@ -195,6 +195,7 @@ h1{
     flex-direction: row;
     place-content: center;
     place-items: center;
+    margin-bottom: 40px;
 
 }
 /* 
@@ -266,7 +267,7 @@ h1{
 }
 
 .displayDataTable{
-    height: 600px;
+    height: 600px !important;
     overflow-y: scroll;
     /* background-color: #f1e8ff; */
     text-align: center;
@@ -280,6 +281,10 @@ h1{
     color: #BFACE0;
     text-align: center;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.displayDataTableRow{
+    color: #645CAA;
 }
 
 .displayDataTableRow:hover{

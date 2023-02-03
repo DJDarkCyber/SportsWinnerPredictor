@@ -9,7 +9,9 @@ urlpatterns = [
     path("", views.main, name="index"),
     path("choose", views.predictOptions, name="predictOptions"),
     path("predictFootball", views.predictFootball, name="predictFootball"),
-    path("footballPredictionResult", views.footballPredictionResult, name="footballPredictionResult")
+    path("footballPredictionResult", views.footballPredictionResult, name="footballPredictionResult"),
+    path("predictBaseketball", views.predictBaseketball, name="predictBaseketball"),
+    path("baseketballPredictionResult", views.baseketballPredictionResult, name="baseketballPredictionResult")
 ]
 
 urlpatterns += staticfiles_urlpatterns()
