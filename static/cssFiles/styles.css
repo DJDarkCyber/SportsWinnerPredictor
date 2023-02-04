@@ -196,7 +196,7 @@ h1{
     place-content: center;
     place-items: center;
     margin-bottom: 40px;
-
+    background-color: transparent;
 }
 /* 
 .predictOptionsContainer:hover{
