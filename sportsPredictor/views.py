@@ -2,6 +2,7 @@ from django.shortcuts import render
 import pickle
 from xgboost import XGBClassifier
 from .models import PredictedHistory
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -33,6 +34,37 @@ def main(request):
 
 def predictOptions(request):
     return render(request, "predictOptions.html")
+
+
+def predictionHistory(request):
+    predictionHist = PredictedHistory.objects.all().order_by("-predicted_on")
+    games = []
+    teams_1 = []
+    teams_2 = []
+    results = []
+    predictedTimes = []
+
+    for predictions in predictionHist:
+        games.append(predictions.game)
+        teams_1.append(predictions.team_1)
+        teams_2.append(predictions.team_2)
+        results.append(predictions.result)
+        predictedTimes.append(predictions.predicted_on)
+    
+    items = zip(games, teams_1, teams_2, results, predictedTimes)
+
+    paginator = Paginator(list(items), 40)
+    page = request.GET.get("page")
+    items = paginator.get_page(page)
+
+    htmlVars = {
+        "items": items
+    }
+
+
+    return render(request, "predictionHistory.html", htmlVars)
+
+
 
 def predictFootball(request):
 

@@ -65,7 +65,7 @@
                       <a class="nav-link" aria-current="page" href="{% url 'predictOptions' %}"><i class="fa-duotone fa-user-robot header-favs"></i>Predict</a>
                    </li>
                    <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="fa-regular fa-bars-sort header-favs"></i>Predictions</a>
+                      <a class="nav-link" href="{% url 'predictionHistory' %}"><i class="fa-regular fa-bars-sort header-favs"></i>Predictions</a>
                    </li>
                    <li class="nav-item">
                       <a class="nav-link" href="#"><i class="fa-solid fa-heart header-favs"></i>Support</a>
@@ -162,6 +162,10 @@
           </table>
         </div>
         
+      </div>
+
+      <div class="container viewfullDataBtn">
+        <button class="btn btn-outline-secondary" onclick="window.location.href= '{% url 'predictionHistory' %}'">View Full Data <i class="fa-duotone fa-right"></i></button>
       </div>
           
     </body>
