@@ -14,7 +14,23 @@ Gets few details from user about the match and predicts the winner team.
 - Hockey
 
 - <img src="https://thumbs.gfycat.com/BelatedBarrenAssassinbug-size_restricted.gif" alt="new updates soon" width="300px" height="30px">
-- ![image](https://thumbs.gfycat.com/BelatedBarrenAssassinbug-size_restricted.gif)
 
+**Note: In feature updates, more prediction sports will be added**
 
+Images :
 
+<img src="static/data/1.png" align="center">
+
+----
+
+<img src="static/data/2.png" align="center">
+
+----
+
+<img src="static/data/3.png" align="center">
+
+----
+
+<img src="static/data/4.png" align="center">
+
+----
