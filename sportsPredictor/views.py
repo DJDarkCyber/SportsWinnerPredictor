@@ -366,3 +366,108 @@ def hockeyPredictionResult(request):
             prediction.save()
 
         return render(request, "hockeyPredictionResult.html", htmlVars)
+
+def predictAsiaWorldCup(request):
+    
+    team_1s = open("sportsPredictor/data/asiaworldcup/Team_1")
+    team_1s = team_1s.readlines()
+    team_1s = [item.replace("\n", "") for item in team_1s]
+
+    team_2s = open("sportsPredictor/data/asiaworldcup/Team_2")
+    team_2s = team_2s.readlines()
+    team_2s = [item.replace("\n", "") for item in team_2s]    
+
+    venues = open("sportsPredictor/data/asiaworldcup/Venue")
+    venues = venues.readlines()
+    venues = [item.replace("\n", "") for item in venues]  
+
+    innings_1st = open("sportsPredictor/data/asiaworldcup/1st_Innings")
+    innings_1st = innings_1st.readlines()
+    innings_1st = [item.replace("\n", "") for item in innings_1st]
+
+    innings_2nd = open("sportsPredictor/data/asiaworldcup/2nd_Innings")
+    innings_2nd = innings_2nd.readlines()
+    innings_2nd = [item.replace("\n", "") for item in innings_2nd]
+
+
+    htmlVars = {
+        "team_1s": team_1s,
+        "team_2s": team_2s,
+        "venues": venues,
+        "innings_1st": innings_1st,
+        "innings_2nd": innings_2nd
+
+    }
+
+    return render(request, "predictAsiaWorldCup.html", htmlVars)
+
+def asiaWorldCupPredictionResult(request):
+    if request.method == "POST":
+        team_1 = request.POST.get("TEAM1")
+        team_2 = request.POST.get("TEAM2")
+        venue = request.POST.get("VENUE")
+        inning_1 = request.POST.get("INNING1")
+        inning_2 = request.POST.get("INNING2")
+
+        print("-------------")
+        print(team_1, team_2, venue, inning_1, inning_2)
+
+        xclf = XGBClassifier()
+        xclf.load_model("sportsPredictor/data/asiaworldcup/XGBAsiaWorldCup.json")
+
+        team_1s = open("sportsPredictor/data/asiaworldcup/Team_1")
+        team_1s = team_1s.readlines()
+        team_1s = [item.replace("\n", "") for item in team_1s]
+
+        team_2s = open("sportsPredictor/data/asiaworldcup/Team_2")
+        team_2s = team_2s.readlines()
+        team_2s = [item.replace("\n", "") for item in team_2s]    
+
+        venues = open("sportsPredictor/data/asiaworldcup/Venue")
+        venues = venues.readlines()
+        venues = [item.replace("\n", "") for item in venues]  
+
+        innings_1st = open("sportsPredictor/data/asiaworldcup/1st_Innings")
+        innings_1st = innings_1st.readlines()
+        innings_1st = [item.replace("\n", "") for item in innings_1st]
+
+        innings_2nd = open("sportsPredictor/data/asiaworldcup/2nd_Innings")
+        innings_2nd = innings_2nd.readlines()
+        innings_2nd = [item.replace("\n", "") for item in innings_2nd]
+
+        won_teams = open("sportsPredictor/data/asiaworldcup/Won")
+        won_teams = won_teams.readlines()
+        won_teams = [item.replace("\n", "") for item in won_teams]  
+
+
+        
+        predictedWinner = xclf.predict([[team_1s.index(team_1), team_2s.index(team_2), venues.index(venue), innings_1st.index(inning_1), innings_2nd.index(inning_2)]])
+        print([team_1s.index(team_1), team_2s.index(team_2), venues.index(venue), innings_1st.index(inning_1), innings_2nd.index(inning_2)])
+        print(won_teams[predictedWinner[0]])
+
+        won_team = won_teams[predictedWinner[0]]
+
+        if won_team == "Tied":
+            pass
+        elif won_team != team_1 and won_team != team_2:
+            won_team = "Error"
+        
+        elif team_1 == team_2:
+            won_team = "Error"
+        elif won_team == "No Result":
+            won_team = "Error"
+
+        htmlVars = {
+            "team_1": team_1,
+            "team_2": team_2,
+            "won_team": won_team
+        }
+
+        del xclf
+
+
+        if won_team != "Error":
+            prediction = PredictedHistory(game="Asia World Cup", team_1=team_1, team_2=team_2, result=won_team)
+            prediction.save()
+
+        return render(request, "asiaWorldCupPredictionResult.html", htmlVars)

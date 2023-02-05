@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sports Win Predictor | Choose</title>
+        <title>Sports Win Predictor | Foot Ball</title>
     </head>
 
     {% load static %}
@@ -61,7 +61,7 @@
                       <a class="nav-link" href="{% url 'predictionHistory' %}"><i class="fa-regular fa-bars-sort header-favs"></i>Predictions</a>
                    </li>
                    <li class="nav-item">
-                      <a class="nav-link" href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank"><i class="fa-solid fa-heart header-favs"></i>Support</a>
+                      <a class="nav-link"  href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank"><i class="fa-solid fa-heart header-favs"></i>Support</a>
                    </li>
                    <li class="nav-item">
                     <a class="nav-link" href="https://github.com/DJDarkCyber" target="_blank"><i class="fa-duotone fa-user-vneck-hair header-favs"></i>About Us</a>
@@ -83,30 +83,65 @@
         </article>
       </div>
 
-      <div class="continer-fluid predictOptionDisplay g-3">
-        
-        <div class="container-fluid predictOptionDisplayContent g-3 text-center" >
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictAsiaWorldCup' %}'">
-              <h4 class="predictOptionHeader">Predict For Asia World Cup <i class="fa-duotone fa-cricket-bat-ball"></i></h4>
-            </div>
-            
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictBaseketball' %}'">
-              <h4 class="predictOptionHeader">Predict For Baseketball <i class="fa-sharp fa-solid fa-basketball"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictFootball' %}'">
-                <h4 class="predictOptionHeader">Predict For FootBall <i class="fa-regular fa-futbol"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictHockey' %}'">
-              <h4 class="predictOptionHeader">Predict For Hockey <i class="fa-sharp fa-solid fa-field-hockey-stick-ball"></i></h4>
-            </div>
-
-            
+      <div class="container getOptionsContainer">
+        <form action="{% url 'asiaWorldCupPredictionResult' %}" method="post">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Team 1</span>
+              <select class="input-group-text" name="TEAM1" id="">
+              <option value="">--Select--</option>
+              {% for team_1 in team_1s %}
+                <option value="{{team_1}}">{{team_1}}</option>
+              {% endfor %}
+            </select>
+          </div>
           
-        </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Team 2</span>
+            <select class="input-group-text" name="TEAM2" id="">
+              <option value="">--Select--</option>
+              {% for team_2 in team_2s %}
+                <option value="{{team_2}}">{{team_2}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">Venue</span>
+            <select class="input-group-text" name="VENUE" id="">
+              <option value="">--Select--</option>
+              {% for venue in venues %}
+                <option value="{{venue}}">{{venue}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div class="input-group mb-3">
+            <span class="input-group-text">Inning 1</span>
+            <select class="input-group-text" name="INNING1" id="">
+              <option value="">--Select--</option>
+              {% for inning_1 in innings_1st %}
+                <option value="{{inning_1}}">{{inning_1}}</option>
+              {% endfor %}
+            </select>
+          </div>
 
+          <div class="input-group mb-3">
+            <span class="input-group-text">Inning 2</span>
+            <select class="input-group-text" name="INNING2" id="">
+              <option value="">--Select--</option>
+              {% for inning_2 in innings_2nd %}
+                <option value="{{inning_2}}">{{inning_2}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+
+          <div class="input-group mb-4 submit-btn">
+            <input type="submit" class="input-group-text">
+          </div>
+
+        </form>
       </div>
           
     </body>
