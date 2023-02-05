@@ -12,7 +12,7 @@ Gets few details from user about the match and predicts the winner team.
 - Baseketball
 - Football
 - Hockey
-
+- Asia World Cup
 - <img src="https://thumbs.gfycat.com/BelatedBarrenAssassinbug-size_restricted.gif" alt="new updates soon" width="300px" height="30px">
 
 **Note: In feature updates, more prediction sports will be added**
