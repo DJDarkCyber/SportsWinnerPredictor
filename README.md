@@ -13,6 +13,7 @@ Gets few details from user about the match and predicts the winner team.
 - Football
 - Hockey
 - Asia World Cup
+- Rugby
 - <img src="https://thumbs.gfycat.com/BelatedBarrenAssassinbug-size_restricted.gif" alt="new updates soon" width="300px" height="30px">
 
 **Note: In feature updates, more prediction sports will be added**
