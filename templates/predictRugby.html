@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sports Win Predictor | Choose</title>
+        <title>Sports Win Predictor | Foot Ball</title>
     </head>
 
     {% load static %}
@@ -61,7 +61,7 @@
                       <a class="nav-link" href="{% url 'predictionHistory' %}"><i class="fa-regular fa-bars-sort header-favs"></i>Predictions</a>
                    </li>
                    <li class="nav-item">
-                      <a class="nav-link" href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank"><i class="fa-solid fa-heart header-favs"></i>Support</a>
+                      <a class="nav-link"  href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank"><i class="fa-solid fa-heart header-favs"></i>Support</a>
                    </li>
                    <li class="nav-item">
                     <a class="nav-link" href="https://github.com/DJDarkCyber" target="_blank"><i class="fa-duotone fa-user-vneck-hair header-favs"></i>About Us</a>
@@ -83,34 +83,65 @@
         </article>
       </div>
 
-      <div class="continer-fluid predictOptionDisplay g-3">
-        
-        <div class="container-fluid predictOptionDisplayContent g-3 text-center" >
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictRugby' %}'">
-              <h4 class="predictOptionHeader">Predict For Rugby <i class="fa-regular fa-rugby-ball"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictAsiaWorldCup' %}'">
-              <h4 class="predictOptionHeader">Predict For Asia World Cup <i class="fa-duotone fa-cricket-bat-ball"></i></h4>
-            </div>
-            
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictBaseketball' %}'">
-              <h4 class="predictOptionHeader">Predict For Baseketball <i class="fa-sharp fa-solid fa-basketball"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictFootball' %}'">
-                <h4 class="predictOptionHeader">Predict For FootBall <i class="fa-regular fa-futbol"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictHockey' %}'">
-              <h4 class="predictOptionHeader">Predict For Hockey <i class="fa-sharp fa-solid fa-field-hockey-stick-ball"></i></h4>
-            </div>
-
-            
+      <div class="container getOptionsContainer">
+        <form action="{% url 'rugbyPredictionResult' %}" method="post">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Home Team</span>
+              <select class="input-group-text" name="HOMETEAM" id="">
+              <option value="">--Select--</option>
+              {% for home_team in home_teams %}
+                <option value="{{home_team}}">{{home_team}}</option>
+              {% endfor %}
+            </select>
+          </div>
           
-        </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Away Team</span>
+            <select class="input-group-text" name="AWAYTEAM" id="">
+              <option value="">--Select--</option>
+              {% for away_team in away_teams %}
+                <option value="{{away_team}}">{{away_team}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">Stadium</span>
+            <select class="input-group-text" name="STADIUM" id="">
+              <option value="">--Select--</option>
+              {% for stadium in stadiums %}
+                <option value="{{stadium}}">{{stadium}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div class="input-group mb-3">
+            <span class="input-group-text">Is Neutral?</span>
+            <select class="input-group-text" name="NEUTRAL" id="">
+              <option value="">--Select--</option>
+              {% for neutral in neutrals %}
+                <option value="{{neutral}}">{{neutral}}</option>
+              {% endfor %}
+            </select>
+          </div>
 
+          <div class="input-group mb-3">
+            <span class="input-group-text">Is World Cup Match?</span>
+            <select class="input-group-text" name="WORLDCUP" id="">
+              <option value="">--Select--</option>
+              {% for world_cup in world_cups %}
+                <option value="{{world_cup}}">{{world_cup}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+
+          <div class="input-group mb-4 submit-btn">
+            <input type="submit" class="input-group-text">
+          </div>
+
+        </form>
       </div>
           
     </body>

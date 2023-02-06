@@ -471,3 +471,109 @@ def asiaWorldCupPredictionResult(request):
             prediction.save()
 
         return render(request, "asiaWorldCupPredictionResult.html", htmlVars)
+
+
+def predictRugby(request):
+    
+    home_teams = open("sportsPredictor/data/rugby/home_team")
+    home_teams = home_teams.readlines()
+    home_teams = [item.replace("\n", "") for item in home_teams]
+
+    away_teams = open("sportsPredictor/data/rugby/away_team")
+    away_teams = away_teams.readlines()
+    away_teams = [item.replace("\n", "") for item in away_teams]    
+
+    stadiums = open("sportsPredictor/data/rugby/stadium")
+    stadiums = stadiums.readlines()
+    stadiums = [item.replace("\n", "") for item in stadiums]  
+
+    neutrals = open("sportsPredictor/data/rugby/neutral")
+    neutrals = neutrals.readlines()
+    neutrals = [item.replace("\n", "") for item in neutrals]
+
+    world_cups = open("sportsPredictor/data/rugby/world_cup")
+    world_cups = world_cups.readlines()
+    world_cups = [item.replace("\n", "") for item in world_cups]
+
+
+    htmlVars = {
+        "home_teams": home_teams,
+        "away_teams": away_teams,
+        "stadiums": stadiums,
+        "neutrals": neutrals,
+        "world_cups": world_cups
+
+    }
+
+    return render(request, "predictRugby.html", htmlVars)
+
+def rugbyPredictionResult(request):
+    if request.method == "POST":
+        home_team = request.POST.get("HOMETEAM")
+        away_team = request.POST.get("AWAYTEAM")
+        stadium = request.POST.get("STADIUM")
+        neutral = request.POST.get("NEUTRAL")
+        world_cup = request.POST.get("WORLDCUP")
+
+        print("-------------")
+        print(home_team, away_team, stadium, neutral, world_cup)
+
+        xclf = XGBClassifier()
+        xclf.load_model("sportsPredictor/data/rugby/XGBRugbyModel.json")
+
+        home_teams = open("sportsPredictor/data/rugby/home_team")
+        home_teams = home_teams.readlines()
+        home_teams = [item.replace("\n", "") for item in home_teams]
+
+        away_teams = open("sportsPredictor/data/rugby/away_team")
+        away_teams = away_teams.readlines()
+        away_teams = [item.replace("\n", "") for item in away_teams]    
+
+        stadiums = open("sportsPredictor/data/rugby/stadium")
+        stadiums = stadiums.readlines()
+        stadiums = [item.replace("\n", "") for item in stadiums]  
+
+        neutrals = open("sportsPredictor/data/rugby/neutral")
+        neutrals = neutrals.readlines()
+        neutrals = [item.replace("\n", "") for item in neutrals]
+
+        world_cups = open("sportsPredictor/data/rugby/world_cup")
+        world_cups = world_cups.readlines()
+        world_cups = [item.replace("\n", "") for item in world_cups]
+
+        won_teams = open("sportsPredictor/data/rugby/Winner")
+        won_teams = won_teams.readlines()
+        won_teams = [item.replace("\n", "") for item in won_teams]  
+
+
+        
+        predictedWinner = xclf.predict([[home_teams.index(home_team), away_teams.index(away_team), stadiums.index(stadium), neutrals.index(neutral), world_cups.index(world_cup)]])
+        print([home_teams.index(home_team), away_teams.index(away_team), stadiums.index(stadium), neutrals.index(neutral), world_cups.index(world_cup)])
+        print(won_teams[predictedWinner[0]])
+
+        won_team = won_teams[predictedWinner[0]]
+
+        if won_team == "Tied":
+            pass
+        elif won_team != home_team and won_team != away_team:
+            won_team = "Error"
+        
+        elif home_team == away_team:
+            won_team = "Error"
+        elif won_team == "No Result":
+            won_team = "Error"
+
+        htmlVars = {
+            "home_team": home_team,
+            "away_team": away_team,
+            "won_team": won_team
+        }
+
+        del xclf
+
+
+        if won_team != "Error":
+            prediction = PredictedHistory(game="Rugby", team_1=home_team, team_2=away_team, result=won_team)
+            prediction.save()
+
+        return render(request, "rugbyPredictionResult.html", htmlVars)

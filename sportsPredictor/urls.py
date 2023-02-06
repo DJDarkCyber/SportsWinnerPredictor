@@ -16,7 +16,9 @@ urlpatterns = [
     path("predictHockey", views.predictHockey, name="predictHockey"),
     path("hockeyPredictionResult", views.hockeyPredictionResult, name="hockeyPredictionResult"),
     path("predictAsiaWorldCup", views.predictAsiaWorldCup, name="predictAsiaWorldCup"),
-    path("asiaWorldCupPredictionResult", views.asiaWorldCupPredictionResult, name="asiaWorldCupPredictionResult")
+    path("asiaWorldCupPredictionResult", views.asiaWorldCupPredictionResult, name="asiaWorldCupPredictionResult"),
+    path("predictRugby", views.predictRugby, name="predictRugby"),
+    path("rugbyPredictionResult", views.rugbyPredictionResult, name="rugbyPredictionResult"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
