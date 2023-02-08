@@ -577,3 +577,109 @@ def rugbyPredictionResult(request):
             prediction.save()
 
         return render(request, "rugbyPredictionResult.html", htmlVars)
+
+
+def predictIPL(request):
+    
+    team_1s = open("sportsPredictor/data/ipl/team1")
+    team_1s = team_1s.readlines()
+    team_1s = [item.replace("\n", "") for item in team_1s]
+
+    team_2s = open("sportsPredictor/data/ipl/team2")
+    team_2s = team_2s.readlines()
+    team_2s = [item.replace("\n", "") for item in team_2s]    
+
+    venues = open("sportsPredictor/data/ipl/venue")
+    venues = venues.readlines()
+    venues = [item.replace("\n", "") for item in venues]  
+
+    toss_winners = open("sportsPredictor/data/ipl/toss_winner")
+    toss_winners = toss_winners.readlines()
+    toss_winners = [item.replace("\n", "") for item in toss_winners]
+
+    toss_decisions = open("sportsPredictor/data/ipl/toss_decision")
+    toss_decisions = toss_decisions.readlines()
+    toss_decisions = [item.replace("\n", "") for item in toss_decisions]
+
+
+    htmlVars = {
+        "team_1s": team_1s,
+        "team_2s": team_2s,
+        "venues": venues,
+        "toss_winners": toss_winners,
+        "toss_decisions": toss_decisions
+
+    }
+
+    return render(request, "predictIPL.html", htmlVars)
+
+def iplPredictionResult(request):
+    if request.method == "POST":
+        team_1 = request.POST.get("TEAM1")
+        team_2 = request.POST.get("TEAM2")
+        venue = request.POST.get("VENUE")
+        toss_winner = request.POST.get("TOSSWINNER")
+        toss_decision = request.POST.get("TOSSDECISION")
+
+        print("-------------")
+        print(team_1, team_2, venue, toss_winner, toss_decision)
+
+        xclf = XGBClassifier()
+        xclf.load_model("sportsPredictor/data/ipl/XGBiplModel.json")
+
+        team_1s = open("sportsPredictor/data/ipl/team1")
+        team_1s = team_1s.readlines()
+        team_1s = [item.replace("\n", "") for item in team_1s]
+
+        team_2s = open("sportsPredictor/data/ipl/team2")
+        team_2s = team_2s.readlines()
+        team_2s = [item.replace("\n", "") for item in team_2s]    
+
+        venues = open("sportsPredictor/data/ipl/venue")
+        venues = venues.readlines()
+        venues = [item.replace("\n", "") for item in venues]  
+
+        toss_winners = open("sportsPredictor/data/ipl/toss_winner")
+        toss_winners = toss_winners.readlines()
+        toss_winners = [item.replace("\n", "") for item in toss_winners]
+
+        toss_decisions = open("sportsPredictor/data/ipl/toss_decision")
+        toss_decisions = toss_decisions.readlines()
+        toss_decisions = [item.replace("\n", "") for item in toss_decisions]
+
+        won_teams = open("sportsPredictor/data/ipl/winner")
+        won_teams = won_teams.readlines()
+        won_teams = [item.replace("\n", "") for item in won_teams]  
+
+
+        
+        predictedWinner = xclf.predict([[venues.index(venue), team_1s.index(team_1), team_2s.index(team_2), toss_winners.index(toss_winner), toss_decisions.index(toss_decision)]])
+        print([venues.index(venue), team_1s.index(team_1), team_2s.index(team_2), toss_winners.index(toss_winner), toss_decisions.index(toss_decision)])
+        print(won_teams[predictedWinner[0]])
+
+        won_team = won_teams[predictedWinner[0]]
+
+        if won_team == "Tied":
+            pass
+        elif won_team != team_1 and won_team != team_2:
+            won_team = "Error"
+        
+        elif team_1 == team_2:
+            won_team = "Error"
+        elif won_team == "No Result":
+            won_team = "Error"
+
+        htmlVars = {
+            "team_1": team_1,
+            "team_2": team_2,
+            "won_team": won_team
+        }
+
+        del xclf
+
+
+        if won_team != "Error":
+            prediction = PredictedHistory(game="IPL", team_1=team_1, team_2=team_2, result=won_team)
+            prediction.save()
+
+        return render(request, "iplPredictionResult.html", htmlVars)

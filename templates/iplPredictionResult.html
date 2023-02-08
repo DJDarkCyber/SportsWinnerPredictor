@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sports Win Predictor | Choose</title>
+        <title>Sports Win Predictor | Baseket Ball</title>
     </head>
 
     {% load static %}
@@ -83,39 +83,42 @@
         </article>
       </div>
 
-      <div class="continer-fluid predictOptionDisplay g-3">
-        
-        <div class="container-fluid predictOptionDisplayContent g-3 text-center" >
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictIPL' %}'">
-              <h4 class="predictOptionHeader">Predict For IPL <i class="fa-regular fa-cricket-bat-ball"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictRugby' %}'">
-              <h4 class="predictOptionHeader">Predict For Rugby <i class="fa-regular fa-rugby-ball"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictAsiaWorldCup' %}'">
-              <h4 class="predictOptionHeader">Predict For Asia World Cup <i class="fa-duotone fa-cricket-bat-ball"></i></h4>
-            </div>
-            
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictBaseketball' %}'">
-              <h4 class="predictOptionHeader">Predict For Baseketball <i class="fa-sharp fa-solid fa-basketball"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictFootball' %}'">
-                <h4 class="predictOptionHeader">Predict For FootBall <i class="fa-regular fa-futbol"></i></h4>
-            </div>
-
-            <div class="container predictOptionsContainer" onclick="window.location.href='{% url 'predictHockey' %}'">
-              <h4 class="predictOptionHeader">Predict For Hockey <i class="fa-sharp fa-solid fa-field-hockey-stick-ball"></i></h4>
-            </div>
-
-            
+      <div class="container predictedTeamDisplay">
+        <div class="displayTeamInfo">
+          <table>
+            <tr>
+              <th>Team 1</th>
+              <td>{{team_1}}</td>
+            </tr>
+            <tr>
+              <th>Team 2</th>
+              <td>{{team_2}}</td>
+            </tr>
+          </table>
           
-        </div>
+          {% if won_team == 'Error' %}
+          <div class="displayPredictedTeam">
+            Oops! Error in predicting. This may cause due to no data of previous matches between the two teams. Check whether you've entered country and city properly.
+          </div>
 
-      </div>
+          {% elif won_team == 'Tie' %}
+
+          <div class="displayPredictedTeam">
+            Predicted as Tie
+          </div>
+
+          {% else %}
+          
+          <div class="displayPredictedTeam">
+            The Predicted Winner is 
+            <span>{{won_team}}</span>
+            
+          </div>
+
+          {% endif %}
+        </div>
+          
+       </div>
           
     </body>
 

@@ -9,6 +9,7 @@ Gets few details from user about the match and predicts the winner team.
 
 ## Available Predictions 
 
+- IPL
 - Baseketball
 - Football
 - Hockey
