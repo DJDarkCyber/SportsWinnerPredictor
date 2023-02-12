@@ -53,7 +53,7 @@ def getUsrRepo(user_name, repo_name):
     repo_stars = soup.find(id="repo-stars-counter-star")
     repo_stars = repo_stars.get_text()
 
-    repo_forks = soup.find(id="repository-container-header")
+    repo_forks = soup.find(id="repo-network-counter")
     repo_forks = repo_forks.get_text()
 
     repo_about = soup.find(class_="my-3")

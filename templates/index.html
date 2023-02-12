@@ -68,7 +68,7 @@
                       <a class="nav-link" href="{% url 'predictionHistory' %}"><i class="fa-regular fa-bars-sort header-favs"></i>Predictions</a>
                    </li>
                    <li class="nav-item">
-                      <a class="nav-link" href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank"><i class="fa-solid fa-heart header-favs"></i>Support</a>
+                      <a class="nav-link" href="#supportUs"><i class="fa-solid fa-heart header-favs"></i>Support</a>
                    </li>
                    <li class="nav-item">
                     <a class="nav-link" href="https://github.com/DJDarkCyber" target="_blank"><i class="fa-duotone fa-user-vneck-hair header-favs"></i>About Us</a>
@@ -138,7 +138,9 @@
         </div>
       </div>
 
+
       <div class="container displayPredictionData">
+       
         <table class="table displayDataTableTitle">
           <tr>
             <th scope="row">Game</th>
@@ -163,11 +165,39 @@
         </div>
         
       </div>
-
       <div class="container viewfullDataBtn">
         <button class="btn btn-outline-secondary" onclick="window.location.href= '{% url 'predictionHistory' %}'">View Full Data <i class="fa-duotone fa-right"></i></button>
       </div>
-          
+
+      <div style="display: flex; flex-direction: row; place-content: center; place-items: center;">
+        <hr>
+      </div>
+
+
+      <div class="container displaySupportUs" id="supportUs">
+        <div class="container displayLinks">
+          <div class="displayRepoLink">
+              <a href="https://github.com/DJDarkCyber" target="_blank">DJDarkCyber </a>/<a href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank" style="font-weight: 800;"> SportsWinnerPredictor</a>
+          </div>
+          <div class="displayInteractLinks">
+              <a href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank">
+                <div class="interactLinksOptions">
+                  <i class="fa-regular fa-code-fork"></i> Fork {{repo_forks}}
+                </div>
+              </a>
+              <a href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank">
+                <div class="interactLinksOptions">
+                  <i class="fa-sharp fa-regular fa-star"></i> Starred {{repo_stars}}
+                </div>
+              </a>
+          </div>
+        </div>
+        <div class="displayAboutRepo">
+          <h5>About</h5>
+          {{repo_about}}
+        </div>
+      </div>
+      
     </body>
 
 
