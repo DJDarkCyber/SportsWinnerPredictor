@@ -71,7 +71,7 @@
                       <a class="nav-link" href="#supportUs"><i class="fa-solid fa-heart header-favs"></i>Support</a>
                    </li>
                    <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/DJDarkCyber" target="_blank"><i class="fa-duotone fa-user-vneck-hair header-favs"></i>About Us</a>
+                    <a class="nav-link" href="#aboutUs"><i class="fa-duotone fa-user-vneck-hair header-favs"></i>About</a>
                  </li>
                 </ul>
              </div>
@@ -197,6 +197,33 @@
           {{repo_about}}
         </div>
       </div>
+
+      <div class="container-fluid row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 displayAboutUs" id="aboutUs">
+        <div class="col usrDescription">
+          <div class="row aboutUsImage"><img src="{{usr_img}}" alt=""></div>
+          <div class="row fullName">{{full_name}}</div>
+          <div class="row usrName">{{user_name}}</div>
+          <div class="row">{{usr_desc}}</div>
+        </div>
+        <div class="col pinnedItems">
+          Pinned
+          <br>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for pinned_repo, pinned_repo_link, pinned_repo_desc in pinned_items %}
+            <div class="col displayPinnedLink">
+              <a href="{{pinned_repo_link}}" target="_blank">{{pinned_repo}}</a>
+              <br>
+              {{pinned_repo_desc}}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+
+      <footer class="container-fluid footer-mod">
+        <a href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank">@SportsWinnerPredictor</a>
+      </footer>
       
     </body>
 

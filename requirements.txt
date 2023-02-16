@@ -1,0 +1,4 @@
+xgboost==1.7.1
+django==4.1
+bs4==0.0.1
+requests

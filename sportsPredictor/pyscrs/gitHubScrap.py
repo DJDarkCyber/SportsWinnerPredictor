@@ -28,7 +28,7 @@ def getUserProfile(user_name):
         for repo in repos:
             repo = repo.get_text()
             pinned_repositories.append(repo)
-            pinned_repo_links.append("https://github.com/" + repo)
+            pinned_repo_links.append("https://github.com/" + user_name + "/" + repo)
         
         repo_descs = stuff.find_all(class_="pinned-item-desc")
         for repo_desc in repo_descs:

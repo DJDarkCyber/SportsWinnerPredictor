@@ -23,6 +23,14 @@ Welcome to the machine learning sports win predictor web-app! Our aim is to prov
 
 **Note: In feature updates, more sports will be added**
 
+## Installation
+
+``pip install -r requirements``
+
+``python manage.py``
+
+Tested on python version 3.10.4
+
 ## Data Sources
 
 The data used to make predictions is sourced from https://kaggle.com/. The data was preprocessed and cleaned to ensure accuracy and reliability.

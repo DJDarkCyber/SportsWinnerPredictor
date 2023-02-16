@@ -3,8 +3,6 @@ from xgboost import XGBClassifier
 from .models import PredictedHistory
 from django.core.paginator import Paginator
 
-import pandas as pd
-
 from .pyscrs.gitHubScrap import getUserProfile
 from .pyscrs.gitHubScrap import getUsrRepo
 
@@ -33,13 +31,22 @@ def main(request):
 
     # full_name, usr_desc, usr_img, pinned_repositories, pinned_repo_links, pinned_repo_desc = getUserProfile("DJDarkCyber")
     repo_stars, repo_forks, repo_about = getUsrRepo("DJDarkCyber", "SportsWinnerPredictor")
+    user_name = "DJDarkCyber"
+    full_name, usr_desc, usr_img, pinned_repositories, pinned_repo_links, pinned_repo_desc = getUserProfile("DJDarkCyber")
+
+    pinned_items = zip(pinned_repositories, pinned_repo_links, pinned_repo_desc)
 
     htmlVars = {
         "pred_items": pred_items,
         "repo_stars": repo_stars,
         "repo_forks": repo_forks,
-        "repo_about": repo_about
-    }
+        "repo_about": repo_about,
+        "full_name": full_name,
+        "user_name": user_name,
+        "usr_desc": usr_desc,
+        "usr_img": usr_img,
+        "pinned_items": pinned_items
+    } 
     return render(request, "index.html", htmlVars)
 
 def predictOptions(request):
