@@ -27,7 +27,7 @@ Welcome to the machine learning sports win predictor web-app! Our aim is to prov
 
 ``pip install -r requirements``
 
-``python manage.py``
+``python manage.py runserver``
 
 Tested on python version 3.10.4
 
