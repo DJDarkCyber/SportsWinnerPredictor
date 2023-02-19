@@ -14,6 +14,7 @@ Welcome to the machine learning sports win predictor web-app! Our aim is to prov
 
 ## Available Predictions 
 
+- T20
 - IPL
 - Baseketball
 - Football

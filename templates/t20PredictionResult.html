@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sports Win Predictor | T20</title>
+    </head>
+
+    {% load static %}
+
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo/favicon.png' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!--
+        CSS Files
+    -->
+    
+    <link rel="stylesheet" href="{% static 'cssFiles/animateCSS/animate.css-4.1.1/source/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/bootstrapCSS/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'cssFiles/fontAwesome/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'cssFiles/styles.css' %}">
+
+    <!--
+        Js Files
+    -->
+    <script src="{% static 'jsFiles/bootstrapJS/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'jsFiles/wow.js/dist/wow.min.js' %}"></script>
+    <script src="{% static 'jsFiles/jQueryFiles/jquery.min.js' %}"></script>
+    <script src="{% static 'jsFiles/canvasJS/canvasjs.min.js' %}"></script>
+    <script scr="{% static 'jsFiles/fontAwesome/pro.min.js' %}"></script>
+    <script src="{% static 'jsFiles/myJSFiles/actionPerform.js' %}"></script>
+
+
+    
+    
+
+    <script>
+        $(function(){
+            new WOW().init();
+        });
+    </script>
+
+    <body>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+             <a class="navbar-brand header-brand-title" href="#">Sports Win Predictor</a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'index' %}"><i class="fa-regular fa-house header-favs"></i>Home</a>
+                  </li>
+                   <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{% url 'predictOptions' %}"><i class="fa-duotone fa-user-robot header-favs"></i>Predict</a>
+                   </li>
+                   <li class="nav-item">
+                      <a class="nav-link" href="{% url 'predictionHistory' %}"><i class="fa-regular fa-bars-sort header-favs"></i>Predictions</a>
+                   </li>
+                   <li class="nav-item">
+                      <a class="nav-link" href="https://github.com/DJDarkCyber/SportsWinnerPredictor" target="_blank"><i class="fa-solid fa-heart header-favs"></i>Support</a>
+                   </li>
+                   <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/DJDarkCyber" target="_blank"><i class="fa-duotone fa-user-vneck-hair header-favs"></i>About Us</a>
+                 </li>
+                </ul>
+             </div>
+          </div>
+       </nav>
+      </header>
+
+      <div class="container-fluid show-web-title text-center">
+        <h1>Predict Who Will Win</h1>
+        <br>
+        <article>
+          Our web app predicts which team in the sports.
+        </article>
+        <article>
+          Start predicting with high accuracy of chance and make a smart guess who is gonna win in upcomming matches in sports
+        </article>
+      </div>
+
+      <div class="container predictedTeamDisplay">
+        <div class="displayTeamInfo">
+          <table>
+            <tr>
+              <th>Team 1</th>
+              <td>{{team_1}}</td>
+            </tr>
+            <tr>
+              <th>Team 2</th>
+              <td>{{team_2}}</td>
+            </tr>
+          </table>
+          
+          {% if won_team == 'Error' %}
+          <div class="displayPredictedTeam">
+            Oops! Error in predicting. This may cause due to no data of previous matches between the two teams. Check whether you've entered country and city properly.
+          </div>
+
+          {% elif won_team == 'Tie' %}
+
+          <div class="displayPredictedTeam">
+            Predicted as Tie
+          </div>
+
+          {% else %}
+          
+          <div class="displayPredictedTeam">
+            The Predicted Winner is 
+            <span>{{won_team}}</span>
+            
+          </div>
+
+          {% endif %}
+        </div>
+          
+       </div>
+          
+    </body>
+
+
+</html>
