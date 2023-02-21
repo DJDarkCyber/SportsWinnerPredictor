@@ -151,14 +151,12 @@ def footballPredictionResult(request):
         print(won_teams[predictedWinner[0]])
 
         won_team = won_teams[predictedWinner[0]]
-        if won_team == "Tied":
+        if won_team == "Tie":
             pass
         elif won_team != home_team and won_team != away_team:
             won_team = "Error"
         
         elif home_team == away_team:
-            won_team = "Error"
-        elif won_team == "No Result":
             won_team = "Error"
 
         htmlVars = {
