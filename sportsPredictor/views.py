@@ -85,44 +85,32 @@ def predictionHistory(request):
 
 def predictFootball(request):
 
-    home_team = open("sportsPredictor/data/football/home_team")
-    home_team = home_team.readlines()
-    home_team = [item.lstrip() for item in home_team]
-    home_team = [item.replace("\n", "") for item in home_team]
+    home_teams = open("sportsPredictor/data/football/home_team", encoding="utf8")
+    home_teams = home_teams.readlines()
+    home_teams = [item.replace("\n", "") for item in home_teams]
 
-    away_team = open("sportsPredictor/data/football/away_team")
-    away_team = away_team.readlines()
-    away_team = [item.lstrip() for item in away_team]
-    away_team = [item.replace("\n", "") for item in away_team]    
+    # team_1s = open("sportsPredictor/data/t20/team_1")
+    #     team_1s = team_1s.readlines()
+    #     team_1s = [item.replace("\n", "") for item in team_1s]
 
-    tournaments = open("sportsPredictor/data/football/tournament")
-    tournaments = tournaments.read()
-    tournaments = tournaments.replace("\n", "").replace("\'", "").split(",")
-    tournaments = [item.lstrip() for item in tournaments]
+    away_teams = open("sportsPredictor/data/football/away_team", encoding="utf8")
+    away_teams = away_teams.readlines()
+    away_teams = [item.replace("\n", "") for item in away_teams]    
 
-    cities = open("sportsPredictor/data/football/city")
-    cities = cities.read()
-    cities = cities.replace("\n", "").replace("\'", "").split(",")
-    cities = [item.lstrip() for item in cities]
+    tournaments = open("sportsPredictor/data/football/tournament", encoding="utf8")
+    tournaments = tournaments.readlines()
+    tournaments = [item.replace("\n", "") for item in tournaments]  
 
-    countries = open("sportsPredictor/data/football/country")
-    countries = countries.read()
-    countries = countries.replace("\n", "").replace("\'", "").split(",")
-    countries = [item.lstrip() for item in countries]
-
-    # won_team = open("sportsPredictor/data/football/winner")
-    # won_team = won_team.readlines()
-    # won_team = [item.lstrip() for item in won_team]
-    # won_team = [item.replace("\n", "") for item in won_team]
-
+    cities = open("sportsPredictor/data/football/city", encoding="utf8")
+    cities = cities.readlines()
+    cities = [item.replace("\n", "") for item in cities]  
     
 
     htmlVars = {
-        "home_teams": home_team,
-        "away_teams": away_team,
+        "home_teams": home_teams,
+        "away_teams": away_teams,
         "tournaments": tournaments,
         "cities": cities,
-        "countries": countries,
         # "won_teams": won_team
     }
 
@@ -134,50 +122,43 @@ def footballPredictionResult(request):
         away_team = request.POST.get("AWAYTEAM")
         tournament = request.POST.get("TOURNAMENT")
         city = request.POST.get("CITY")
-        country = request.POST.get("COUNTRY")
 
         xclf = XGBClassifier()
         xclf.load_model("sportsPredictor/data/football/footballPredictorXGBModel.json")
 
-        home_teams = open("sportsPredictor/data/football/home_team")
+        home_teams = open("sportsPredictor/data/football/home_team", encoding="utf8")
         home_teams = home_teams.readlines()
-        home_teams = [item.lstrip() for item in home_teams]
         home_teams = [item.replace("\n", "") for item in home_teams]
 
-        away_teams = open("sportsPredictor/data/football/away_team")
+        away_teams = open("sportsPredictor/data/football/away_team", encoding="utf8")
         away_teams = away_teams.readlines()
-        away_teams = [item.lstrip() for item in away_teams]
         away_teams = [item.replace("\n", "") for item in away_teams]    
 
-        tournaments = open("sportsPredictor/data/football/tournament")
-        tournaments = tournaments.read()
-        tournaments = tournaments.replace("\n", "").replace("\'", "").split(",")
-        tournaments = [item.lstrip() for item in tournaments]
+        tournaments = open("sportsPredictor/data/football/tournament", encoding="utf8")
+        tournaments = tournaments.readlines()
+        tournaments = [item.replace("\n", "") for item in tournaments]  
 
-        cities = open("sportsPredictor/data/football/city")
-        cities = cities.read()
-        cities = cities.replace("\n", "").replace("\'", "").split(",")
-        cities = [item.lstrip() for item in cities]
+        cities = open("sportsPredictor/data/football/city", encoding="utf8")
+        cities = cities.readlines()
+        cities = [item.replace("\n", "") for item in cities]  
 
-        countries = open("sportsPredictor/data/football/country")
-        countries = countries.read()
-        countries = countries.replace("\n", "").replace("\'", "").split(",")
-        countries = [item.lstrip() for item in countries]
-
-        won_teams = open("sportsPredictor/data/football/winner")
+        won_teams = open("sportsPredictor/data/football/winner", encoding="utf8")
         won_teams = won_teams.readlines()
-        won_teams = [item.lstrip() for item in won_teams]
         won_teams = [item.replace("\n", "") for item in won_teams]
 
-        predictedWinner = xclf.predict([[home_teams.index(home_team), away_teams.index(away_team), tournaments.index(tournament), cities.index(city), countries.index(country)]])
-        print([home_teams.index(home_team), away_teams.index(away_team), tournaments.index(tournament), cities.index(city), countries.index(country)])
+        predictedWinner = xclf.predict([[home_teams.index(home_team), away_teams.index(away_team), tournaments.index(tournament), cities.index(city)]])
+        print([home_teams.index(home_team), away_teams.index(away_team), tournaments.index(tournament), cities.index(city)])
         print(won_teams[predictedWinner[0]])
 
         won_team = won_teams[predictedWinner[0]]
-        if won_team != home_team and won_team != away_team:
+        if won_team == "Tied":
+            pass
+        elif won_team != home_team and won_team != away_team:
             won_team = "Error"
         
-        if home_team == away_team:
+        elif home_team == away_team:
+            won_team = "Error"
+        elif won_team == "No Result":
             won_team = "Error"
 
         htmlVars = {
@@ -198,19 +179,19 @@ def footballPredictionResult(request):
 
 def predictBaseketball(request):
 
-    home_teams = open("sportsPredictor/data/baseketball/HomeTeam")
+    home_teams = open("sportsPredictor/data/baseketball/HomeTeam", encoding="utf8")
     home_teams = home_teams.readlines()
     home_teams = [item.replace("\n", "") for item in home_teams]
 
-    away_teams = open("sportsPredictor/data/baseketball/AwayTeam")
+    away_teams = open("sportsPredictor/data/baseketball/AwayTeam", encoding="utf8")
     away_teams = away_teams.readlines()
     away_teams = [item.replace("\n", "") for item in away_teams]    
 
-    game_types = open("sportsPredictor/data/baseketball/GameType")
+    game_types = open("sportsPredictor/data/baseketball/GameType", encoding="utf8")
     game_types = game_types.readlines()
     game_types = [item.replace("\n", "") for item in game_types]  
 
-    locations = open("sportsPredictor/data/baseketball/Location")
+    locations = open("sportsPredictor/data/baseketball/Location", encoding="utf8")
     locations = locations.readlines()
     locations = [item.replace("\n", "") for item in locations]      
 
@@ -234,23 +215,23 @@ def baseketballPredictionResult(request):
         xclf = XGBClassifier()
         xclf.load_model("sportsPredictor/data/baseketball/BaseketBallXGB.json")
 
-        home_teams = open("sportsPredictor/data/baseketball/HomeTeam")
+        home_teams = open("sportsPredictor/data/baseketball/HomeTeam", encoding="utf8")
         home_teams = home_teams.readlines()
         home_teams = [item.replace("\n", "") for item in home_teams]
 
-        away_teams = open("sportsPredictor/data/baseketball/AwayTeam")
+        away_teams = open("sportsPredictor/data/baseketball/AwayTeam", encoding="utf8")
         away_teams = away_teams.readlines()
         away_teams = [item.replace("\n", "") for item in away_teams]    
 
-        game_types = open("sportsPredictor/data/baseketball/GameType")
+        game_types = open("sportsPredictor/data/baseketball/GameType", encoding="utf8")
         game_types = game_types.readlines()
         game_types = [item.replace("\n", "") for item in game_types]  
 
-        locations = open("sportsPredictor/data/baseketball/Location")
+        locations = open("sportsPredictor/data/baseketball/Location", encoding="utf8")
         locations = locations.readlines()
         locations = [item.replace("\n", "") for item in locations]      
 
-        won_teams = open("sportsPredictor/data/baseketball/WinningTeam")
+        won_teams = open("sportsPredictor/data/baseketball/WinningTeam", encoding="utf8")
         won_teams = won_teams.readlines()
         won_teams = [item.replace("\n", "") for item in won_teams]  
 
@@ -283,23 +264,23 @@ def baseketballPredictionResult(request):
 
 def predictHockey(request):
 
-    home_teams = open("sportsPredictor/data/hockey/Home_Team")
-    home_teams = home_teams.readlines()
+    home_teams = open("sportsPredictor/data/hockey/Home_Team", encoding="utf8")
+    home_teams = home_teams.readlines() 
     home_teams = [item.replace("\n", "") for item in home_teams]
 
-    away_teams = open("sportsPredictor/data/hockey/Away_Team")
+    away_teams = open("sportsPredictor/data/hockey/Away_Team", encoding="utf8")
     away_teams = away_teams.readlines()
     away_teams = [item.replace("\n", "") for item in away_teams]    
 
-    game_events = open("sportsPredictor/data/hockey/Event")
+    game_events = open("sportsPredictor/data/hockey/Event", encoding="utf8")
     game_events = game_events.readlines()
     game_events = [item.replace("\n", "") for item in game_events]  
 
-    home_coaches = open("sportsPredictor/data/hockey/Home_Coach")
+    home_coaches = open("sportsPredictor/data/hockey/Home_Coach", encoding="utf8")
     home_coaches = home_coaches.readlines()
     home_coaches = [item.replace("\n", "") for item in home_coaches]
 
-    away_coaches = open("sportsPredictor/data/hockey/Away_Coach")
+    away_coaches = open("sportsPredictor/data/hockey/Away_Coach", encoding="utf8")
     away_coaches = away_coaches.readlines()
     away_coaches = [item.replace("\n", "") for item in away_coaches]
 
@@ -327,27 +308,27 @@ def hockeyPredictionResult(request):
         xclf = XGBClassifier()
         xclf.load_model("sportsPredictor/data/hockey/nhlXGBModel2.json")
 
-        home_teams = open("sportsPredictor/data/hockey/Home_Team")
+        home_teams = open("sportsPredictor/data/hockey/Home_Team", encoding="utf8")
         home_teams = home_teams.readlines()
         home_teams = [item.replace("\n", "") for item in home_teams]
 
-        away_teams = open("sportsPredictor/data/hockey/Away_Team")
+        away_teams = open("sportsPredictor/data/hockey/Away_Team", encoding="utf8")
         away_teams = away_teams.readlines()
         away_teams = [item.replace("\n", "") for item in away_teams]    
 
-        game_events = open("sportsPredictor/data/hockey/Event")
+        game_events = open("sportsPredictor/data/hockey/Event", encoding="utf8")
         game_events = game_events.readlines()
         game_events = [item.replace("\n", "") for item in game_events]  
 
-        home_coaches = open("sportsPredictor/data/hockey/Home_Coach")
+        home_coaches = open("sportsPredictor/data/hockey/Home_Coach", encoding="utf8")
         home_coaches = home_coaches.readlines()
         home_coaches = [item.replace("\n", "") for item in home_coaches]
 
-        away_coaches = open("sportsPredictor/data/hockey/Away_Coach")
+        away_coaches = open("sportsPredictor/data/hockey/Away_Coach", encoding="utf8")
         away_coaches = away_coaches.readlines()
         away_coaches = [item.replace("\n", "") for item in away_coaches]  
 
-        won_teams = open("sportsPredictor/data/hockey/Winning_Team")
+        won_teams = open("sportsPredictor/data/hockey/Winning_Team", encoding="utf8")
         won_teams = won_teams.readlines()
         won_teams = [item.replace("\n", "") for item in won_teams]  
 
@@ -384,23 +365,23 @@ def hockeyPredictionResult(request):
 
 def predictAsiaWorldCup(request):
     
-    team_1s = open("sportsPredictor/data/asiaworldcup/Team_1")
+    team_1s = open("sportsPredictor/data/asiaworldcup/Team_1", encoding="utf8")
     team_1s = team_1s.readlines()
     team_1s = [item.replace("\n", "") for item in team_1s]
 
-    team_2s = open("sportsPredictor/data/asiaworldcup/Team_2")
+    team_2s = open("sportsPredictor/data/asiaworldcup/Team_2", encoding="utf8")
     team_2s = team_2s.readlines()
     team_2s = [item.replace("\n", "") for item in team_2s]    
 
-    venues = open("sportsPredictor/data/asiaworldcup/Venue")
+    venues = open("sportsPredictor/data/asiaworldcup/Venue", encoding="utf8")
     venues = venues.readlines()
     venues = [item.replace("\n", "") for item in venues]  
 
-    innings_1st = open("sportsPredictor/data/asiaworldcup/1st_Innings")
+    innings_1st = open("sportsPredictor/data/asiaworldcup/1st_Innings", encoding="utf8")
     innings_1st = innings_1st.readlines()
     innings_1st = [item.replace("\n", "") for item in innings_1st]
 
-    innings_2nd = open("sportsPredictor/data/asiaworldcup/2nd_Innings")
+    innings_2nd = open("sportsPredictor/data/asiaworldcup/2nd_Innings", encoding="utf8")
     innings_2nd = innings_2nd.readlines()
     innings_2nd = [item.replace("\n", "") for item in innings_2nd]
 
@@ -430,27 +411,27 @@ def asiaWorldCupPredictionResult(request):
         xclf = XGBClassifier()
         xclf.load_model("sportsPredictor/data/asiaworldcup/XGBAsiaWorldCup.json")
 
-        team_1s = open("sportsPredictor/data/asiaworldcup/Team_1")
+        team_1s = open("sportsPredictor/data/asiaworldcup/Team_1", encoding="utf8")
         team_1s = team_1s.readlines()
         team_1s = [item.replace("\n", "") for item in team_1s]
 
-        team_2s = open("sportsPredictor/data/asiaworldcup/Team_2")
+        team_2s = open("sportsPredictor/data/asiaworldcup/Team_2", encoding="utf8")
         team_2s = team_2s.readlines()
         team_2s = [item.replace("\n", "") for item in team_2s]    
 
-        venues = open("sportsPredictor/data/asiaworldcup/Venue")
+        venues = open("sportsPredictor/data/asiaworldcup/Venue", encoding="utf8")
         venues = venues.readlines()
         venues = [item.replace("\n", "") for item in venues]  
 
-        innings_1st = open("sportsPredictor/data/asiaworldcup/1st_Innings")
+        innings_1st = open("sportsPredictor/data/asiaworldcup/1st_Innings", encoding="utf8")
         innings_1st = innings_1st.readlines()
         innings_1st = [item.replace("\n", "") for item in innings_1st]
 
-        innings_2nd = open("sportsPredictor/data/asiaworldcup/2nd_Innings")
+        innings_2nd = open("sportsPredictor/data/asiaworldcup/2nd_Innings", encoding="utf8")
         innings_2nd = innings_2nd.readlines()
         innings_2nd = [item.replace("\n", "") for item in innings_2nd]
 
-        won_teams = open("sportsPredictor/data/asiaworldcup/Won")
+        won_teams = open("sportsPredictor/data/asiaworldcup/Won", encoding="utf8")
         won_teams = won_teams.readlines()
         won_teams = [item.replace("\n", "") for item in won_teams]  
 
@@ -490,23 +471,23 @@ def asiaWorldCupPredictionResult(request):
 
 def predictRugby(request):
     
-    home_teams = open("sportsPredictor/data/rugby/home_team")
+    home_teams = open("sportsPredictor/data/rugby/home_team", encoding="utf8")
     home_teams = home_teams.readlines()
     home_teams = [item.replace("\n", "") for item in home_teams]
 
-    away_teams = open("sportsPredictor/data/rugby/away_team")
+    away_teams = open("sportsPredictor/data/rugby/away_team", encoding="utf8")
     away_teams = away_teams.readlines()
     away_teams = [item.replace("\n", "") for item in away_teams]    
 
-    stadiums = open("sportsPredictor/data/rugby/stadium")
+    stadiums = open("sportsPredictor/data/rugby/stadium", encoding="utf8")
     stadiums = stadiums.readlines()
     stadiums = [item.replace("\n", "") for item in stadiums]  
 
-    neutrals = open("sportsPredictor/data/rugby/neutral")
+    neutrals = open("sportsPredictor/data/rugby/neutral", encoding="utf8")
     neutrals = neutrals.readlines()
     neutrals = [item.replace("\n", "") for item in neutrals]
 
-    world_cups = open("sportsPredictor/data/rugby/world_cup")
+    world_cups = open("sportsPredictor/data/rugby/world_cup", encoding="utf8")
     world_cups = world_cups.readlines()
     world_cups = [item.replace("\n", "") for item in world_cups]
 
@@ -536,27 +517,27 @@ def rugbyPredictionResult(request):
         xclf = XGBClassifier()
         xclf.load_model("sportsPredictor/data/rugby/XGBRugbyModel.json")
 
-        home_teams = open("sportsPredictor/data/rugby/home_team")
+        home_teams = open("sportsPredictor/data/rugby/home_team", encoding="utf8")
         home_teams = home_teams.readlines()
         home_teams = [item.replace("\n", "") for item in home_teams]
 
-        away_teams = open("sportsPredictor/data/rugby/away_team")
+        away_teams = open("sportsPredictor/data/rugby/away_team", encoding="utf8")
         away_teams = away_teams.readlines()
         away_teams = [item.replace("\n", "") for item in away_teams]    
 
-        stadiums = open("sportsPredictor/data/rugby/stadium")
+        stadiums = open("sportsPredictor/data/rugby/stadium", encoding="utf8")
         stadiums = stadiums.readlines()
         stadiums = [item.replace("\n", "") for item in stadiums]  
 
-        neutrals = open("sportsPredictor/data/rugby/neutral")
+        neutrals = open("sportsPredictor/data/rugby/neutral", encoding="utf8")
         neutrals = neutrals.readlines()
         neutrals = [item.replace("\n", "") for item in neutrals]
 
-        world_cups = open("sportsPredictor/data/rugby/world_cup")
+        world_cups = open("sportsPredictor/data/rugby/world_cup", encoding="utf8")
         world_cups = world_cups.readlines()
         world_cups = [item.replace("\n", "") for item in world_cups]
 
-        won_teams = open("sportsPredictor/data/rugby/Winner")
+        won_teams = open("sportsPredictor/data/rugby/Winner", encoding="utf8")
         won_teams = won_teams.readlines()
         won_teams = [item.replace("\n", "") for item in won_teams]  
 
@@ -596,23 +577,23 @@ def rugbyPredictionResult(request):
 
 def predictIPL(request):
     
-    team_1s = open("sportsPredictor/data/ipl/team1")
+    team_1s = open("sportsPredictor/data/ipl/team1", encoding="utf8")
     team_1s = team_1s.readlines()
     team_1s = [item.replace("\n", "") for item in team_1s]
 
-    team_2s = open("sportsPredictor/data/ipl/team2")
+    team_2s = open("sportsPredictor/data/ipl/team2", encoding="utf8")
     team_2s = team_2s.readlines()
     team_2s = [item.replace("\n", "") for item in team_2s]    
 
-    venues = open("sportsPredictor/data/ipl/venue")
+    venues = open("sportsPredictor/data/ipl/venue", encoding="utf8")
     venues = venues.readlines()
     venues = [item.replace("\n", "") for item in venues]  
 
-    toss_winners = open("sportsPredictor/data/ipl/toss_winner")
+    toss_winners = open("sportsPredictor/data/ipl/toss_winner", encoding="utf8")
     toss_winners = toss_winners.readlines()
     toss_winners = [item.replace("\n", "") for item in toss_winners]
 
-    toss_decisions = open("sportsPredictor/data/ipl/toss_decision")
+    toss_decisions = open("sportsPredictor/data/ipl/toss_decision", encoding="utf8")
     toss_decisions = toss_decisions.readlines()
     toss_decisions = [item.replace("\n", "") for item in toss_decisions]
 
@@ -642,27 +623,27 @@ def iplPredictionResult(request):
         xclf = XGBClassifier()
         xclf.load_model("sportsPredictor/data/ipl/XGBiplModel.json")
 
-        team_1s = open("sportsPredictor/data/ipl/team1")
+        team_1s = open("sportsPredictor/data/ipl/team1", encoding="utf8")
         team_1s = team_1s.readlines()
         team_1s = [item.replace("\n", "") for item in team_1s]
 
-        team_2s = open("sportsPredictor/data/ipl/team2")
+        team_2s = open("sportsPredictor/data/ipl/team2", encoding="utf8")
         team_2s = team_2s.readlines()
         team_2s = [item.replace("\n", "") for item in team_2s]    
 
-        venues = open("sportsPredictor/data/ipl/venue")
+        venues = open("sportsPredictor/data/ipl/venue", encoding="utf8")
         venues = venues.readlines()
         venues = [item.replace("\n", "") for item in venues]  
 
-        toss_winners = open("sportsPredictor/data/ipl/toss_winner")
+        toss_winners = open("sportsPredictor/data/ipl/toss_winner", encoding="utf8")
         toss_winners = toss_winners.readlines()
         toss_winners = [item.replace("\n", "") for item in toss_winners]
 
-        toss_decisions = open("sportsPredictor/data/ipl/toss_decision")
+        toss_decisions = open("sportsPredictor/data/ipl/toss_decision", encoding="utf8")
         toss_decisions = toss_decisions.readlines()
         toss_decisions = [item.replace("\n", "") for item in toss_decisions]
 
-        won_teams = open("sportsPredictor/data/ipl/winner")
+        won_teams = open("sportsPredictor/data/ipl/winner", encoding="utf8")
         won_teams = won_teams.readlines()
         won_teams = [item.replace("\n", "") for item in won_teams]  
 
@@ -701,27 +682,27 @@ def iplPredictionResult(request):
 
 def predictT20(request):
     
-    team_1s = open("sportsPredictor/data/t20/team_1")
+    team_1s = open("sportsPredictor/data/t20/team_1", encoding="utf8")
     team_1s = team_1s.readlines()
     team_1s = [item.replace("\n", "") for item in team_1s]
 
-    team_2s = open("sportsPredictor/data/t20/team_2")
+    team_2s = open("sportsPredictor/data/t20/team_2", encoding="utf8")
     team_2s = team_2s.readlines()
     team_2s = [item.replace("\n", "") for item in team_2s]    
 
-    venues = open("sportsPredictor/data/t20/venue")
+    venues = open("sportsPredictor/data/t20/venue", encoding="utf8")
     venues = venues.readlines()
     venues = [item.replace("\n", "") for item in venues]  
 
-    toss_winners = open("sportsPredictor/data/t20/toss_winner")
+    toss_winners = open("sportsPredictor/data/t20/toss_winner", encoding="utf8")
     toss_winners = toss_winners.readlines()
     toss_winners = [item.replace("\n", "") for item in toss_winners]
 
-    genders = open("sportsPredictor/data/t20/gender")
+    genders = open("sportsPredictor/data/t20/gender", encoding="utf8")
     genders = genders.readlines()
     genders = [item.replace("\n", "") for item in genders]
 
-    toss_decisions = open("sportsPredictor/data/t20/elected_first")
+    toss_decisions = open("sportsPredictor/data/t20/elected_first", encoding="utf8")
     toss_decisions = toss_decisions.readlines()
     toss_decisions = [item.replace("\n", "") for item in toss_decisions]
 
@@ -750,31 +731,31 @@ def t20PredictionResult(request):
         xclf = XGBClassifier()
         xclf.load_model("sportsPredictor/data/t20/XGBt20Model.json")
 
-        team_1s = open("sportsPredictor/data/t20/team_1")
+        team_1s = open("sportsPredictor/data/t20/team_1", encoding="utf8")
         team_1s = team_1s.readlines()
         team_1s = [item.replace("\n", "") for item in team_1s]
 
-        team_2s = open("sportsPredictor/data/t20/team_2")
+        team_2s = open("sportsPredictor/data/t20/team_2", encoding="utf8")
         team_2s = team_2s.readlines()
         team_2s = [item.replace("\n", "") for item in team_2s]    
 
-        venues = open("sportsPredictor/data/t20/venue")
+        venues = open("sportsPredictor/data/t20/venue", encoding="utf8")
         venues = venues.readlines()
         venues = [item.replace("\n", "") for item in venues]  
 
-        toss_winners = open("sportsPredictor/data/t20/toss_winner")
+        toss_winners = open("sportsPredictor/data/t20/toss_winner", encoding="utf8")
         toss_winners = toss_winners.readlines()
         toss_winners = [item.replace("\n", "") for item in toss_winners]
 
-        genders = open("sportsPredictor/data/t20/gender")
+        genders = open("sportsPredictor/data/t20/gender", encoding="utf8")
         genders = genders.readlines()
         genders = [item.replace("\n", "") for item in genders]
 
-        toss_decisions = open("sportsPredictor/data/t20/elected_first")
+        toss_decisions = open("sportsPredictor/data/t20/elected_first", encoding="utf8")
         toss_decisions = toss_decisions.readlines()
         toss_decisions = [item.replace("\n", "") for item in toss_decisions]
 
-        won_teams = open("sportsPredictor/data/t20/result")
+        won_teams = open("sportsPredictor/data/t20/result", encoding="utf8")
         won_teams = won_teams.readlines()
         won_teams = [item.replace("\n", "") for item in won_teams]  
 
